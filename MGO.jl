@@ -6,10 +6,8 @@ function TraceRay(xk0::AbstractVector,ω0,τmin,τmax,D,rtol=1e-3,τsteps=1000)
     function RHS(xk::AbstractVector,p,t)
         x_ = xk[1:3]
         k_ = xk[4:6]
-        ∂D∂k(x,k) = ForwardDiff.gradient(D(x,k),k)
-        ∂D∂x(x,k) = ForwardDiff.gradient(D(x,k),x)
-        print(∂D∂x(x,k))
-        [-∂D∂k,∂D∂x]
+        JD(xk) = ForwardDiff.jacobian(xk -> D(xk[1:3],xk[4:6]),xk)
+        [JD(xk)[1,1],JD(xk)[2,2],JD(xk)[3,3],JD(xk)[1,4],JD(xk)[2,5],JD(xk)[3,6]]
     end
 
     prob = ODEProblem(RHS,xk0,(τmin,τmax))
