@@ -1,15 +1,15 @@
 include("MGO.jl")
 using ForwardDiff
 using OrdinaryDiffEq
-using Plots
+using PyPlot
 
 function D(x::AbstractVector,k::AbstractVector)
     -k.*k - x
 end
 
-#τmin = zeros(1,6)
 τmin = 0
-#τmax = ones(1,6)
+τsteps = 1000
 τmax = 1
+τ = range(τmin,τmax,1000)
 sol = TraceRay([1.0,1.0,0,0,0,1.1],0,τmin,τmax,D::Function)
-plot(sol)
+plot(τ,sol.u[1,:])
