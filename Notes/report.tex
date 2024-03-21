@@ -1,0 +1,103 @@
+\documentclass{article}
+
+\usepackage[english]{babel} 
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage{braket}
+
+\title{Notes on MGO}
+\author{Arthur Adriaens}
+
+\begin{document}
+\maketitle
+
+\section{GO}
+GO assumes $\lambda$ is the shortest lenghtscale, suppose a stationary wavefield $\psi$ is governed by a linear wave equation
+\begin{equation}
+    \hat{\mathcal{D}}(\mathbf{x},-i\partial_\mathbf{x})\psi(\mathbf{x})
+    \label{eq:BasicGO}
+\end{equation}
+With $D$ the dispersion kernel, and suppose further that $\psi$
+can be partitioned into a rapidly varying phase $\theta$ and a
+slowly varying envelope $\phi$:
+\begin{equation}
+    \psi(\mathbf{x}) = \phi(\mathbf{x})e^{i\theta(\mathbf{x})}
+\end{equation}
+Then it can be shown that $\theta$ and $\phi$ asymptotically
+satisfy the following two relations:
+
+\begin{enumerate}
+    \item The local dispersion relation:
+\begin{equation}
+    \mathcal{D} [\mathbf{x},\partial_\mathbf{x} \theta(\mathbf{x})] = 0
+\end{equation}
+    \item The envelope transport equation
+\begin{equation}
+    2\mathbf{v}(\mathbf{x})^\intercal \partial_\mathbf{x}\phi(\mathbf{x}) + [\nabla\cdot\mathbf{v}(\mathbf{x})]\phi(\mathbf{x}) = 0
+\end{equation}
+\end{enumerate}
+
+\noindent
+Where $\mathcal{D}(\mathbf{x},\mathbf{k})$ is the Weyl symbol of
+$\hat{\mathcal{D}}(\mathbf{x},-i\partial_x)$ (appendix \ref{appendix:Weyl}) and 
+\begin{equation}
+    \mathbf{v}(\mathbf{x}) \stackrel{.}{=} \partial_\mathbf{k}\mathcal{D}(\mathbf{x},\mathbf{k})|_{\mathbf{k}=\partial_\mathbf{x}\theta(\mathbf{x})}
+\end{equation}
+is proportional to the local group velocity.
+If we neglect dissipation, thus assuming
+$\hat{D}$ to be Hermitian and consequently, both 
+$\mathcal{D}$ and $\mathbf{v}$ real. Then, the envelope transport equation can be cast as a conservation relation:
+\begin{equation}
+    \nabla\cdot[|\phi(\mathbf{x})|^2\mathbf{v}(\mathbf{x})] = 0
+\end{equation}
+I.e conservation of wave action flux.
+
+The local dispersion relation defines a (2N-1) dimensional
+volume in the 2N-D phase space with coordinates ($\mathbf{x},\mathbf{k}$). For coherent wavefields that have a single wavevector $\mathbf{k}(\mathbf{x})$ (or a finite superposition of such wavevectors), one can identify
+\begin{equation}
+    \mathbf{k}(\mathbf{x}) = \partial_\mathbf{x}\theta(\mathbf{x})
+\end{equation}
+Such that $\mathbf{k} $ is restricted to an N-D surface
+contained within the (2N-1)-D volume (which N-D surface is
+dictated by initial conditions). This N-D surface is called
+the \textit{ray manifold} which is a Lagrangian manifold.
+\section{Metaplectic Geometrical Optics}
+Rather than describing waves as propagating in some
+configuration space with coordinates $\mathbf{x}$ according to
+pseudo-differential equation of the form (\ref{eq:BasicGO}), it
+is more natural to describe waves as state vectors $\ket{\psi}$
+in a Hilbert space being acted upon by operators. Then, partial
+differential equations that govern wavefields can be understood
+as projections of the invariant wave equations 
+\begin{equation}
+    \hat{D}(\hat{\mathbf{x}},\hat{\mathbf{k}})\ket{\psi} = \ket{0}
+\end{equation}
+on a particular basis.
+
+\appendix
+\section{Wigner-Weyl transform}
+\label{appendix:Weyl}
+The Wigner-Weyl transform (WWT, denoted as $\mathbb{W}$)
+maps a given operator $\hat{A}(\hat{\mathbf{z}})$ to a corresponding phase-space function $\mathcal{A}(\mathbf{z})$ , called the 
+\textit{Weyl symbol} of $\hat{A}$, as
+\begin{eqnarray}
+    \mathcal{A}(\mathbf{z}) &= \mathbb{W}[\hat{A}(\hat{\mathbf{z}})]\\
+                            &\stackrel{.}{=} \int d\mathcal{\mathbf{\zeta} }\frac{i \mathbf{\zeta}^\intercal \mathtt{J_{2N}\mathbf{z}}}{(2\pi)^N} \text{tr}[e^{-i \mathbf{\zeta}^\intercal \mathtt{J}_{2N} \hat{\mathbf{z}}}\hat{A}]
+\end{eqnarray}
+With the integral taken over the phase space. and
+\begin{equation}
+    \mathtt{J}_{2N} = 
+    \left(
+    \begin{matrix}
+        0_N & I_N\\
+        -I_N & 0_N\\
+    \end{matrix}
+    \right)
+\end{equation}
+The inverse WWT maps a phase-space function to an operator:
+\begin{eqnarray}
+    \hat{A}(\mathbf{z}) &= \mathbb{W}^{-1}[\mathcal{A}(\mathbf{z})]\\
+                        &\stackrel{.}{=} \int \frac{d\mathbf{z}'d\mathcal{\mathbf{\zeta} }}{(2\pi)^{2N}}\mathcal{A}(\mathbf{z}')e^{-i \mathbf{\zeta}^\intercal \mathtt{J}_{2N} \mathbf{z}' + i \mathbf{\zeta}^\intercal \mathtt{J}_{2N} \hat{\mathbf{z}}}
+\end{eqnarray}
+
+\end{document}
