@@ -74,6 +74,16 @@ as projections of the invariant wave equations
 \end{equation}
 on a particular basis.
 
+\section{Ray Tracing}
+The GO equations can be solved by finding phase space trajectories
+$\mathbf{z}(\mathbf{\tau}) = (\mathbf{x}(\mathbf{\tau}),\mathbf{k}(\mathbf{\tau}))^\intercal$ satisfying the local dispersion  relation. Such trajectories are called \textit{rays}.
+Here $\mathbf{\tau} = (\tau_1,\mathbf{\tau}_\perp)^\intercal$ where $\tau_1$ is the longitudinal time parameter and $\mathbf{\tau}_\perp = (x_2^ {(0)},x_3^ {(0)})^\intercal$ are the perpendicular initial coordinates of the ray.
+Given an initial condition $\mathbf{z}(0,\mathbf{\tau}_\perp) = (\mathbf{x}_0,\mathbf{k}_0)^\intercal$, a ray can be found from Hamilton's ray equations:
+\begin{eqnarray}
+    \partial_{\tau_1}\mathbf{x}(\tau_1) &= -\partial_{\mathbf{k}}\mathcal{D}(\mathbf{x},\mathbf{k})\\
+    \partial_{\tau_1}\mathbf{k}(\tau_1) &= -\partial_{\mathbf{x}}\mathcal{D}(\mathbf{x},\mathbf{k})
+\end{eqnarray}
+We can launch a finite family of rays on a discrete $\mathbf{\tau}_\perp$-grid
 \appendix
 \section{Wigner-Weyl transform}
 \label{appendix:Weyl}
