@@ -55,12 +55,75 @@ I.e conservation of wave action flux.
 The local dispersion relation defines a (2N-1) dimensional
 volume in the 2N-D phase space with coordinates ($\mathbf{x},\mathbf{k}$). For coherent wavefields that have a single wavevector $\mathbf{k}(\mathbf{x})$ (or a finite superposition of such wavevectors), one can identify
 \begin{equation}
+    \label{eq:theta}
     \mathbf{k}(\mathbf{x}) = \partial_\mathbf{x}\theta(\mathbf{x})
 \end{equation}
 Such that $\mathbf{k} $ is restricted to an N-D surface
 contained within the (2N-1)-D volume (which N-D surface is
 dictated by initial conditions). This N-D surface is called
 the \textit{ray manifold} which is a Lagrangian manifold.
+In particular this means that all vectors $\{\mathbf{T}_j\}$ tangent to it
+satisfy
+\begin{equation}
+    \mathbf{T}_j^\intercal \mathtt{J}_{2N}  \mathbf{T}_{j'} = 0
+\end{equation}
+Where we have introduced the 2Nx2N matrix
+\begin{equation}
+    \mathtt{J}_{2N} = 
+    \begin{pmatrix}
+        0_N & I_N \\
+        -I_N & 0_N \\
+    \end{pmatrix}
+\end{equation}
+The ray manifold is a central object in GO and MGO, as such it
+will be useful to have an explicit construction of it.
+This is provided by the ray (Hamilton's) equations:
+\begin{eqnarray}
+    \partial_\xi \mathbf{x} &= \partial_\mathbf{k}\mathcal{D}(\mathbf{x},\mathbf{k})\\
+    \partial_\xi \mathbf{k} &= -\partial_\mathbf{x}\mathcal{D}(\mathbf{x},\mathbf{k})\\
+\end{eqnarray}
+The family of solution trajectories [$\mathbf{x}(\xi),\mathbf{k}(\xi)$] for a corresponding family
+of initial conditions [$\mathbf{x}(0),\mathbf{k}(0)$] then trace out the ray manifold.
+Since the ray manifold is N-D, let's introduce a set of N-D coordinates 
+$\mathbf{\tau}$ such that it can be paramterized as [$\mathbf{x}(\mathbf{\tau}),\mathbf{k}(\mathbf{\tau})$].
+We shall choose $\tau_1 = \xi$ as a "longitudinal" coordinate along each ray and the remaining
+$\mathbf{\tau}_\perp  \stackrel{.}{=} (\tau_2,...,\tau_N)$ as "transverse" coordinates that describe the different
+initial conditions of each ray.
+
+Along this family of rays, the envelope transport equation takes the form
+\begin{equation}
+    \label{eq:re-formed envelope}
+    2j(\mathbf{\tau})\partial_{\tau_1}\phi(\mathbf{\tau}) + \phi(\mathbf{\tau})\partial_{\tau_1}j(\mathbf{\tau}) 
+\end{equation}
+Where we have introduced the Jacobian determinant of the ray trajectories
+\begin{equation}
+    j(\mathbf{\tau}) \stackrel{.}{=} \text{det  } \partial_{\mathbf{\tau}} \mathbf{x}(\mathbf{\tau})
+\end{equation}
+Equation \ref{eq:re-formed envelope} can be formally solved to yield
+\begin{equation}
+    \label{eq:phi}
+    \phi(\mathbf{\tau}) = \phi_0(\mathbf{\tau}_\perp)\sqrt{\frac{ j_0(\mathbf{\tau_\perp}) }{ j(\mathbf{\tau}) }}
+\end{equation}
+This thus states that
+\begin{equation}
+    |\phi(\mathbf{\tau})|^2|\mathbf{v}|\text{d}A
+\end{equation}
+is constant along the ray, i.e action is conserved for an infinitesimal "ray
+tube".  Having determined $\phi$ from equation \ref{eq:phi} and $\theta$ from
+integrating the rays using Hamilton's equations and then using equation
+\ref{eq:theta}, the full field $\Psi$ can be constructed by summing over all rays 
+that arrive at a given $\mathbf{x}$, i.e
+\begin{eqnarray}
+    \Psi(\mathbf{x}) &= \sum_{t \in \mathbf{\tau}(\mathbf{x})} \phi(\mathbf{t}) e^{i\theta(\mathbf{t})} \\
+                     &\equiv \sum_{t \in \mathbf{\tau}(\mathbf{x})}\phi_0(\mathbf{\tau}_\perp)\sqrt{\frac{ j_0(\mathbf{\tau_\perp}) }{ j(\mathbf{\tau}) }} e^{i\int \mathbf{k}^\intercal \text{d}\mathbf{x}}
+\end{eqnarray}
+With $\mathbf{\tau}(\mathbf{x})$ the multi-valued formal function inverse of $\mathbf{x}(\mathbf{\tau})$, clearly
+the GO field diverges where the jacobian determinant tends to zero,
+or equivalently where
+\begin{equation}
+    \text{det  } \partial_{\mathbf{\mathbf{x}}} \mathbf{k} \equiv \text{det  } \partial_{\mathbf{\mathbf{x}}\mathbf{x}} \mathbf{\theta}  \rightarrow \infty
+\end{equation}
+such locations are called \textit{caustics}.
 \section{Metaplectic Geometrical Optics}
 Rather than describing waves as propagating in some
 configuration space with coordinates $\mathbf{x}$ according to
